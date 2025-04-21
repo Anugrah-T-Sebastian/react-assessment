@@ -1,0 +1,12 @@
+.folder {
+  padding: 2px;
+  display: flex;
+  justify-content: first baseline;
+}
+.subfolder {
+  margin-left: 10px;
+}
+.file {
+  padding: 2px;
+  margin-left: 0px;
+}
