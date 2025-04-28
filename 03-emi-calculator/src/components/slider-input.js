@@ -1,30 +1,42 @@
-function SliderInput({}) {
+import React from "react";
+import { numberWithCommas } from "../utils/config";
+
+function SliderInput({
+  title,
+  underlineTitle,
+  state,
+  min,
+  max,
+  onChange,
+  labelMin,
+  labelMax,
+}) {
   return (
     <React.Fragment>
-      <span className="title">Down Payment</span>
-      <span className="title">
-        {" "}
-        Total Down Payment -{" "}
-        {numberWithCommas(
-          (Number(downPayment) + (cost - downPayment) * (fee / 100)).toFixed(0)
-        )}
-      </span>
+      <span className="title">{title}</span>
+      {state > 0 && (
+        <span className="title" style={{ textDecoration: "underline" }}>
+          {underlineTitle}
+        </span>
+      )}
 
-      <div className="">
+      <div>
         <input
           type="range"
           min={0}
-          max={cost}
+          max={max}
           className="slider"
-          value={downPayment}
-          onChange={updateEMI}
+          value={state}
+          onChange={onChange}
         />
         <div className="labels">
-          <label htmlFor="">0%</label>
-          <b>{numberWithCommas(downPayment)}</b>
-          <label htmlFor="">100%</label>
+          <label htmlFor="">{labelMin ?? numberWithCommas(min)}</label>
+          <b>{numberWithCommas(state)}</b>
+          <label htmlFor="">{labelMax ?? numberWithCommas(max)}</label>
         </div>
       </div>
     </React.Fragment>
   );
 }
+
+export default SliderInput;
